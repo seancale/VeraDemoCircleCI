@@ -27,7 +27,7 @@ import com.veracode.verademo.utils.UserSession;
 
 
 /**
- * @author johnadmin
+ * @author johnadmin..
  *
  */
 @Controller
