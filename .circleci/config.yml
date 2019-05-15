@@ -37,5 +37,22 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
-      # run tests!
+      # run build and tests!
+      - run: mvn clean install
       - run: mvn integration-test
+      
+       #Securty Test with VeraCode
+      - run: ls -la build/classes/java/main
+      - run: curl -sSL https://download.sourceclear.com/ci.sh | sh
+      - run: curl -O https://downloads.veracode.com/securityscan/gl-scanner-java-LATEST.zip
+      - run: unzip gl-scanner-java-LATEST.zip gl-scanner-java.jar
+      - run: java -jar gl-scanner-java.jar
+            --api_id "96064bbf913d0b549154f23fe3b7ff25"
+            --api_secret_key "a25ac717c6930cd1962d722afd08b6b68d4c3144bc1ffa450aed688e3ba71d1ea1f02c5a349dbf33ff266e925b8414920b56aa45a4346d000cc05d31238b15b2"
+            --source_dir "src/main/java/com/veracode/verademo"
+            --build_dir "target/classes/com/veracode/verademo"
+            --project_name $CIRCLE_PROJECT_REPONAME
+            --project_url $CIRCLE_BUILD_URL
+            --previous_job_name $CIRCLE_PREVIOUS_BUILD_NUM
+      
+      
