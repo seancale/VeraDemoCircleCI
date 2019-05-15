@@ -37,10 +37,10 @@ public class UserController {
 
 	@Autowired
 	private UserSession theUser;
-	
 
-	
-	
+
+
+
 	/**
 	 * @param target
 	 * @param model
@@ -49,7 +49,7 @@ public class UserController {
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String showLogin(@RequestParam(value="target", required=false) String target, Model model) {
 		logger.info("Entering showLogin");
-		if (null != target) 
+		if (null != target)
 			model.addAttribute("target", target);
 		else
 			model.addAttribute("target", "");
@@ -64,23 +64,23 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String processLogin(@RequestParam(value="user", required=true) String username, 
-                               @RequestParam(value="password", required=true) String password, 
-                               @RequestParam(value="target", required=false) String target, Model model) {
+	public String processLogin(@RequestParam(value="user", required=true) String username,
+							   @RequestParam(value="password", required=true) String password,
+							   @RequestParam(value="target", required=false) String target, Model model) {
 		String nextView = "login";
-		
+
 		logger.info("Entering processLogin");
-		
+
 		Connection connect = null;
-        /* START BAD CODE */
+		/* START BAD CODE
 		Statement sqlStatement = null;
-        /* END BAD CODE */
-        /* START GOOD CODE
+		/* END BAD CODE */
+        /* START GOOD CODE */
 		PreparedStatement sqlStatement = null;
         /* END GOOD CODE */
- 
+
 		int yy = 0;
-		
+
 		try {
 			// Get the Database Connection
 			logger.info("Creating the Database connection");
@@ -88,9 +88,9 @@ public class UserController {
 			connect = DriverManager.getConnection(Constants.create().getJdbcConnectionString());
 			connect.setAutoCommit(true);
 
-			
-			
-			/* START BAD CODE */
+
+
+			/* START BAD CODE
 			// Execute the query
 			logger.info("Creating the Statgrement");
 			String sqlQuery = "select * from users where username='" + username + "' and password='" + password + "';";
@@ -98,7 +98,7 @@ public class UserController {
 			logger.info("Execute the Statement: " + sqlQuery);
 			ResultSet result = sqlStatement.executeQuery(sqlQuery);
 			/* END BAD CODE */
-			/* START GOOD CODE
+			/* START GOOD CODE */
 			String sqlQuery = "select * from users where username=? and password=?;";
 			logger.info("Preparing the PreparedStatement");
 			sqlStatement = connect.prepareStatement(sqlQuery);
@@ -108,7 +108,7 @@ public class UserController {
 			logger.info("Executing the PreparedStatement");
 			ResultSet result = sqlStatement.executeQuery();
 			/* END GOOD CODE */
-			
+
 			// Did we find exactly 1 user that matched?
 			if (result.first()) {
 				// OK we have found the user, lets setup their Session object
@@ -123,7 +123,7 @@ public class UserController {
 				if (0 != target.length()) {
 					logger.info("redirecting to target");
 					nextView = "redirect:" + target;
-					
+
 				} else {
 					logger.info("redirecting to feed");
 					nextView = "redirect:feed";
@@ -139,35 +139,35 @@ public class UserController {
 			logger.error(exceptSql);
 			model.addAttribute("error", exceptSql.getMessage());
 			model.addAttribute("target", target);
-        } catch (ClassNotFoundException cnfe) {
+		} catch (ClassNotFoundException cnfe) {
 			logger.error(cnfe);
 			model.addAttribute("error", cnfe.getMessage());
 			model.addAttribute("target", target);
-        	
-        } finally {
-        	try {
-                if (sqlStatement != null) {
-                    sqlStatement.close();
-                }
-        	} catch (SQLException exceptSql) {
-    			logger.error(exceptSql);
-    			model.addAttribute("error", exceptSql.getMessage());
-    			model.addAttribute("target", target);
-            }
-        	try {
-                if (connect != null){
-                    connect.close();
-                }
-            } catch (SQLException exceptSql) {
-    			logger.error(exceptSql);
-    			model.addAttribute("error", exceptSql.getMessage());
-    			model.addAttribute("target", target);
-            }
-        }
+
+		} finally {
+			try {
+				if (sqlStatement != null) {
+					sqlStatement.close();
+				}
+			} catch (SQLException exceptSql) {
+				logger.error(exceptSql);
+				model.addAttribute("error", exceptSql.getMessage());
+				model.addAttribute("target", target);
+			}
+			try {
+				if (connect != null){
+					connect.close();
+				}
+			} catch (SQLException exceptSql) {
+				logger.error(exceptSql);
+				model.addAttribute("error", exceptSql.getMessage());
+				model.addAttribute("target", target);
+			}
+		}
 		logger.info("returning the nextView: " + Cleansers.cleanLog(nextView));
 		return nextView;
 	}
-	
+
 	@RequestMapping(value="/logout", method={ RequestMethod.GET, RequestMethod.POST })
 	public String processLogout(@RequestParam(value="type", required=false) String type, Model model) {
 		logger.info("Entering processLogout");
@@ -179,20 +179,20 @@ public class UserController {
 		logger.info("Redirecting to Login...");
 		return "redirect:login";
 	}
-	
+
 	@RequestMapping(value="/register", method=RequestMethod.GET)
 	public String showRegister(@RequestParam(value="type", required=false) String type, Model model) {
 		logger.info("Entering showRegister");
-		
+
 		return "register";
 	}
 
 	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public String processRegister(@RequestParam(value="user", required=true) String username, 
-			                      @RequestParam(value="password", required=true) String password, 
-			                      @RequestParam(value="cpassword", required=true) String cpassword, 
-			                      @RequestParam(value="realName", required=true) String realName,
-			                      @RequestParam(value="blabName", required=true) String blabName,Model model) {
+	public String processRegister(@RequestParam(value="user", required=true) String username,
+								  @RequestParam(value="password", required=true) String password,
+								  @RequestParam(value="cpassword", required=true) String cpassword,
+								  @RequestParam(value="realName", required=true) String realName,
+								  @RequestParam(value="blabName", required=true) String blabName,Model model) {
 		logger.info("Entering processRegister");
 
 		String nextView = "register";
@@ -203,12 +203,12 @@ public class UserController {
 			return "register";
 		}
 		Connection connect = null;
-        /* START BAD CODE 
+        /* START BAD CODE
 		Statement sqlStatement = null;
         /* END BAD CODE */
-        /* START GOOD CODE */
+		/* START GOOD CODE */
 		PreparedStatement sqlStatement = null;
-        /* END GOOD CODE */
+		/* END GOOD CODE */
 
 		try {
 			// Get the Database Connection
@@ -217,7 +217,7 @@ public class UserController {
 			connect = DriverManager.getConnection(Constants.create().getJdbcConnectionString());
 			connect.setAutoCommit(true);
 
-			/* START BAD CODE 
+			/* START BAD CODE
 			// Execute the query
 			String sqlQuery = "insert into users (username, password) values ('" + username + "', '" + password + "')";
 			sqlStatement = connect.createStatement();
@@ -234,10 +234,10 @@ public class UserController {
 			sqlStatement.setDate(3,  new java.sql.Date(Calendar.getInstance().getTime().getTime()));
 			sqlStatement.setString(4, realName);
 			sqlStatement.setString(5, blabName);
-			
+
 			logger.info("Executing the PreparedStatement");
 			Boolean result = sqlStatement.execute();
-			
+
 			// If there is a record...
 			if (result) {
 				//failre
@@ -250,45 +250,45 @@ public class UserController {
 			/* END GOOD CODE */
 		}catch (SQLException exceptSql) {
 			logger.error(exceptSql);
-        } catch (ClassNotFoundException cnfe) {
+		} catch (ClassNotFoundException cnfe) {
 			logger.error(cnfe);
-        	
-        } finally {
-        	try {
-                if (sqlStatement != null) {
-                    sqlStatement.close();
-                }
-        	} catch (SQLException exceptSql) {
-    			logger.error(exceptSql);
-            }
-        	try {
-                if (connect != null){
-                    connect.close();
-                }
-            } catch (SQLException exceptSql) {
-    			logger.error(exceptSql);
-            }
-        }
+
+		} finally {
+			try {
+				if (sqlStatement != null) {
+					sqlStatement.close();
+				}
+			} catch (SQLException exceptSql) {
+				logger.error(exceptSql);
+			}
+			try {
+				if (connect != null){
+					connect.close();
+				}
+			} catch (SQLException exceptSql) {
+				logger.error(exceptSql);
+			}
+		}
 		return nextView;
 	}
-	
+
 	@RequestMapping(value="/profile", method=RequestMethod.GET)
 	public String showProfile(@RequestParam(value="type", required=false) String type, Model model) {
 		logger.info("Entering showProfile");
 		Connection connect = null;
 		PreparedStatement myHecklers = null;
 		String sqlMyHecklers = "SELECT users.userid, users.blab_name, users.date_created "
-                			+ "FROM users LEFT JOIN listeners ON users.userid = listeners.listener "
-                			+ "WHERE listeners.blabber=? AND listeners.status='Active';";
-		
-		
+				+ "FROM users LEFT JOIN listeners ON users.userid = listeners.listener "
+				+ "WHERE listeners.blabber=? AND listeners.status='Active';";
+
+
 		try {
 			logger.info("Getting Database connection");
 			// Get the Database Connection
 			Class.forName("com.mysql.jdbc.Driver");
 			connect = DriverManager.getConnection(Constants.create().getJdbcConnectionString());
 			connect.setAutoCommit(true);
-			
+
 			// Find the Blabs that this user listens to
 			logger.info("Preparing the BlabsForMe Prepared Statement");
 			myHecklers = connect.prepareStatement(sqlMyHecklers);
@@ -300,7 +300,7 @@ public class UserController {
 			ArrayList<Integer> hecklerId = new ArrayList<Integer>();
 			ArrayList<String> hecklerName = new ArrayList<String>();
 			ArrayList<String> created = new ArrayList<String>();
-			
+
 			while (myHecklersResults.next()) {
 				hecklerId.add((Integer)myHecklersResults.getInt(1));
 				hecklerName.add(myHecklersResults.getString(2));
@@ -314,32 +314,32 @@ public class UserController {
 
 		}catch (SQLException exceptSql) {
 			logger.error(exceptSql);
-        } catch (ClassNotFoundException cnfe) {
+		} catch (ClassNotFoundException cnfe) {
 			logger.error(cnfe);
-        	
-        } finally {
-        	try {
-                if (myHecklers != null) {
-                	myHecklers.close();
-                }
-        	} catch (SQLException exceptSql) {
-    			logger.error(exceptSql);
-            }
-        	try {
-                if (connect != null){
-                    connect.close();
-                }
-            } catch (SQLException exceptSql) {
-    			logger.error(exceptSql);
-            }
-        }
-		
+
+		} finally {
+			try {
+				if (myHecklers != null) {
+					myHecklers.close();
+				}
+			} catch (SQLException exceptSql) {
+				logger.error(exceptSql);
+			}
+			try {
+				if (connect != null){
+					connect.close();
+				}
+			} catch (SQLException exceptSql) {
+				logger.error(exceptSql);
+			}
+		}
+
 		return "profile";
 	}
 
 	@RequestMapping(value="/profile", method=RequestMethod.POST)
-	public String processProfile(@RequestParam(value="realName", required=true) String realName, 
-			                     @RequestParam(value="blabName", required=true) String blabName, Model model) {
+	public String processProfile(@RequestParam(value="realName", required=true) String realName,
+								 @RequestParam(value="blabName", required=true) String blabName, Model model) {
 		String nextView = "redirect:feed";
 		logger.info("Entering processProfile");
 		if (!theUser.getLoggedIn()) {
@@ -347,8 +347,8 @@ public class UserController {
 			nextView = "redirect:login?target=feed";
 		} else {
 			logger.info("User is Logged In - continuing...");
-			
-	 		Connection connect = null;
+
+			Connection connect = null;
 			PreparedStatement update = null;
 			String updateSql = "UPDATE users SET real_name=?, blab_name=? WHERE userid=?;";
 
@@ -358,17 +358,17 @@ public class UserController {
 				Class.forName("com.mysql.jdbc.Driver");
 				connect = DriverManager.getConnection(Constants.create().getJdbcConnectionString());
 				connect.setAutoCommit(true);
-				
-				// 
+
+				//
 				logger.info("Preparing the update Prepared Statement");
 				update = connect.prepareStatement(updateSql);
 				update.setString(1, realName);
 				update.setString(2, blabName);
 				update.setInt(3, theUser.getUserID());
-							
+
 				logger.info("Executing the update Prepared Statement");
 				boolean updateResult = update.execute();
-				
+
 				// If there is a record...
 				if (updateResult) {
 					//failre
@@ -378,33 +378,33 @@ public class UserController {
 					theUser.setBlabName(blabName);
 				}
 				nextView = "redirect:blabbers";
-				
+
 			}catch (SQLException exceptSql) {
 				logger.error(exceptSql);
-	        } catch (ClassNotFoundException cnfe) {
+			} catch (ClassNotFoundException cnfe) {
 				logger.error(cnfe);
-	        	
-	        } finally {
-	        	try {
-	                if (update != null) {
-	                	update.close();
-	                }
-	        	} catch (SQLException exceptSql) {
-	    			logger.error(exceptSql);
-	            }
-	        	try {
-	                if (connect != null){
-	                    connect.close();
-	                }
-	            } catch (SQLException exceptSql) {
-	    			logger.error(exceptSql);
-	            }
-	        }
-			
-			
+
+			} finally {
+				try {
+					if (update != null) {
+						update.close();
+					}
+				} catch (SQLException exceptSql) {
+					logger.error(exceptSql);
+				}
+				try {
+					if (connect != null){
+						connect.close();
+					}
+				} catch (SQLException exceptSql) {
+					logger.error(exceptSql);
+				}
+			}
+
+
 		}
-		
-		
+
+
 		return nextView;
 	}
 
