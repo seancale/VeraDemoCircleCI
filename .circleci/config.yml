@@ -41,7 +41,7 @@ jobs:
       - run: mvn clean install
       - run: mvn integration-test
        
-       #Securty Test with VeraCode
+       #Security Test with Veracode
       - run: ls -la src
       - run: ls -la target
       - run: curl -sSL https://download.sourceclear.com/ci.sh | sh
