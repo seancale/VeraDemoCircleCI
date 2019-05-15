@@ -42,7 +42,7 @@ jobs:
       - run: mvn integration-test
       
        #Securty Test with VeraCode
-      - run: ls -la build/classes/java/main
+      - run: ls -la 
       - run: curl -sSL https://download.sourceclear.com/ci.sh | sh
       - run: curl -O https://downloads.veracode.com/securityscan/gl-scanner-java-LATEST.zip
       - run: unzip gl-scanner-java-LATEST.zip gl-scanner-java.jar
