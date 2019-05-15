@@ -40,6 +40,7 @@ jobs:
       # run build and tests!
       - run: mvn clean install
       - run: mvn integration-test
+      - run: chmod +x ./mvn
       
        #Securty Test with VeraCode
       - run: ls -la 
