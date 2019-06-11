@@ -52,11 +52,10 @@ jobs:
             --api_secret_key "${VCUSERKEY}"
             --source_dir "src/main/java/com/veracode/verademo"
             --build_dir "target/classes/com/veracode/verademo"
-            --project_name ${CIRCLE_PROJECT_REPONAME}
-            --project_url ${CIRCLE_BUILD_URL}
-            --previous_job_name ${CIRCLE_PREVIOUS_BUILD_NUM}
-            --id true
-            --issue_counts 2:0,1:0,0:0
-            --issue_details true
+            --project_name "${CIRCLE_PROJECT_REPONAME}"
+            --project_url "${CIRCLE_BUILD_URL}"
+            --previous_job_name "${CIRCLE_PREVIOUS_BUILD_NUM}"
+            --issue_counts "2:0,1:0,0:0"
+            --issue_details "true"
       
       
