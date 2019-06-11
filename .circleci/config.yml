@@ -48,8 +48,8 @@ jobs:
       - run: curl -O https://downloads.veracode.com/securityscan/gl-scanner-java-LATEST.zip
       - run: unzip gl-scanner-java-LATEST.zip gl-scanner-java.jar
       - run: java -jar gl-scanner-java.jar
-            --api_id "90497fc4f42d2c238b9f3248402f5e96"
-            --api_secret_key "f08212609839e374ee9bbb67a813efe0c38bfa2ed425d5062f704a0ae2f9b8ca1e51740c2ab13a0b155b38bd5d8ba8eeec981bcc9ec520cffd8294d2e0f377cc"
+            --api_id "${VCUSER}"
+            --api_secret_key "${VCUSERKEY}"
             --source_dir "src/main/java/com/veracode/verademo"
             --build_dir "target/classes/com/veracode/verademo"
             --project_name $CIRCLE_PROJECT_REPONAME
