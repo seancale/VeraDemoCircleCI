@@ -52,7 +52,5 @@ jobs:
             --api_secret_key "${VCUSERKEY}"
             --source_dir "src/main/java/com/veracode/verademo"
             --build_dir "target/classes/com/veracode/verademo"
-            --issue_counts "2:0,1:0,0:0"
-            --issue_details "true"
       
       
