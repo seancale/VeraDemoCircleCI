@@ -74,10 +74,10 @@ public class UserController {
 		logger.info("Entering processLogin");
 		
 		Connection connect = null;
-        /* START BAD CODE 
+        /* START BAD CODE */ 
 		Statement sqlStatement = null;
         /* END BAD CODE 
-        /* START GOOD CODE */  
+        /* START GOOD CODE  
 		PreparedStatement sqlStatement = null;
         /* END GOOD CODE */
  
@@ -92,7 +92,7 @@ public class UserController {
 
 			
 			
-			/* START BAD CODE 
+			/* START BAD CODE */ 
 			// Execute the query
 			logger.info("Creating the Statgrement");
 			String sqlQuery = "select * from users where username='" + username + "' and password='" + password + "';";
@@ -100,7 +100,7 @@ public class UserController {
 			logger.info("Execute the Statement: " + sqlQuery);
 			ResultSet result = sqlStatement.executeQuery(sqlQuery);
 			/* END BAD CODE */
-			/* START GOOD CODE */ 
+			/* START GOOD CODE 
 			String sqlQuery = "select * from users where username=? and password=?;";
 			logger.info("Preparing the PreparedStatement");
 			sqlStatement = connect.prepareStatement(sqlQuery);
