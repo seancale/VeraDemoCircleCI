@@ -26,7 +26,7 @@ import com.veracode.verademo.utils.Constants;
 import com.veracode.verademo.utils.UserSession;
 
 
-/****
+/**
  * @author johnadmin..
  *
  */
@@ -42,8 +42,6 @@ public class UserController {
 	
 	
 	/**
-	 *
-	 *
 	 * @param target
 	 * @param model
 	 * @return
@@ -74,10 +72,10 @@ public class UserController {
 		logger.info("Entering processLogin");
 		
 		Connection connect = null;
-        /* START BAD CODE  
+        /* START BAD CODE */
 		Statement sqlStatement = null;
-        /* END BAD CODE 
-        /* START GOOD CODE */  
+        /* END BAD CODE */
+        /* START GOOD CODE
 		PreparedStatement sqlStatement = null;
         /* END GOOD CODE */
  
@@ -92,7 +90,7 @@ public class UserController {
 
 			
 			
-			/* START BAD CODE  
+			/* START BAD CODE */
 			// Execute the query
 			logger.info("Creating the Statgrement");
 			String sqlQuery = "select * from users where username='" + username + "' and password='" + password + "';";
@@ -100,7 +98,7 @@ public class UserController {
 			logger.info("Execute the Statement: " + sqlQuery);
 			ResultSet result = sqlStatement.executeQuery(sqlQuery);
 			/* END BAD CODE */
-			/* START GOOD CODE */ 
+			/* START GOOD CODE
 			String sqlQuery = "select * from users where username=? and password=?;";
 			logger.info("Preparing the PreparedStatement");
 			sqlStatement = connect.prepareStatement(sqlQuery);
@@ -219,14 +217,14 @@ public class UserController {
 			connect = DriverManager.getConnection(Constants.create().getJdbcConnectionString());
 			connect.setAutoCommit(true);
 
-			/* START BAD CODE 
+			/* START BAD CODE */
 			// Execute the query
 			String sqlQuery = "insert into users (username, password) values ('" + username + "', '" + password + "')";
 			sqlStatement = connect.createStatement();
 			Boolean result = sqlStatement.execute(sqlQuery);
 			/* END BAD CODE */
 
-			/* START GOOD GODE */
+			/* START GOOD GODE 
 			String sqlQuery = "insert into users (username, password, date_created, real_name, blab_name) values (?, ?, ?, ?, ?)";
 			logger.info("Preparing the PreparedStatement");
 			sqlStatement = connect.prepareStatement(sqlQuery);
