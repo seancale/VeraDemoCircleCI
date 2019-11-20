@@ -77,7 +77,7 @@ public class UserController {
         /* END BAD CODE */
         /* START GOOD CODE 
 		PreparedStatement sqlStatement = null;
-        /* END GOOD CODE */
+        /* END GOOD CODE  */
  
 		int yy = 0;
 		
