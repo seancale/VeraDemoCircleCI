@@ -48,4 +48,4 @@ jobs:
             --api_id "${VCUSER}"
             --api_secret_key "${VCUSERKEY}"
             --project_name "/home/circleci/repo/target/verademo.war"
-            --project_url "https://github.com/Clintpollock/VeraDemoJava"
+            --project_url "/home/circleci/repo/target/verademo.war"
