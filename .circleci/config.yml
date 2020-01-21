@@ -47,5 +47,5 @@ jobs:
       - run: java -jar devops-scanner-java.jar
             --api_id "${VCUSER}"
             --api_secret_key "${VCUSERKEY}"
-            --project_name "target/classes/com/veracode/verademo/verademo.war"
+            --project_name "/home/circleci/repo/target/verademo.war"
             --project_url "https://github.com/Clintpollock/VeraDemoJava"
