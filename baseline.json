@@ -1,0 +1,1485 @@
+{
+  "_links": {
+    "root": {
+      "href": "/"
+    },
+    "self": {
+      "href": "/scan/a35d2487-677e-41f9-ac4f-d6321a6f87f4"
+    },
+    "help": {
+      "href": "https://help.veracode.com/reader/tS9CaFwL4_lbIEWWomsJoA/ovfZGgu96UINQxIuTqRDwg"
+    }
+  },
+  "scan_status": "SUCCESS",
+  "message": "Scan successful. Results size: 94421 bytes",
+  "modules": [
+    "verademo.war",
+    "JS files within verademo.war"
+  ],
+  "modules_count": 2,
+  "results": {
+    "TestResults": {
+      "Issues": {
+        "Issue": [
+          {
+            "Title": "java.sql.Statement.executeQuery",
+            "IssueId": "1002",
+            "GOB": "B",
+            "Severity": "4",
+            "IssueTypeId": "taint",
+            "IssueType": "Improper Neutralization of Special Elements used in an SQL Command (\u0027SQL Injection\u0027)",
+            "CWEId": "89",
+            "DisplayText": "\u003cspan\u003eThis database query contains a SQL injection flaw.  The call to java.sql.Statement.executeQuery() constructs a dynamic SQL query using a variable derived from untrusted input.  An attacker could exploit this flaw to execute arbitrary SQL queries against the database. The first argument to executeQuery() contains tainted data from the variable sqlQuery. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.\u003c/span\u003e \u003cspan\u003eAvoid dynamically constructing SQL queries.  Instead, use parameterized prepared statements to prevent the database from interpreting the contents of bind variables as part of the query.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/89.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://www.owasp.org/index.php/SQL_injection\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://webappsec.pbworks.com/SQL-Injection\"\u003eWASC\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/UserController.java",
+                "Line": "99",
+                "FunctionName": "processLogin",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.UserController.processLogin",
+                "FunctionPrototype": "java.lang.String processLogin(java.lang.String, java.lang.String, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.UserController"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "190200079",
+              "PrototypeHash": "547887729",
+              "FlawHash": "3392777041",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1176028798",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "JDBC_PASSWORD initializer",
+            "IssueId": "1001",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "crypto",
+            "IssueType": "Use of Hard-coded Password",
+            "CWEId": "259",
+            "DisplayText": "\u003cspan\u003eThis variable assignment uses a hard-coded password that may compromise system security in a way that cannot be easily remedied.  The use of a hard-coded password significantly increases the possibility that the account being protected will be compromised.  Moreover, the password cannot be changed without patching the software.  If a hard-coded password is compromised in a commercial product, all deployed instances may be vulnerable to attack.  In some cases, this finding may indicate a reference to a password (e.g. the name of a key in a properties file) rather than an actual password. JDBC_PASSWORD initializer\u003c/span\u003e \u003cspan\u003eStore passwords out-of-band from the application code.  Follow best practices for protecting credentials stored in locations such as configuration or properties files. An HSM may be appropriate for particularly sensitive credentials.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/259.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/utils/Constants.java",
+                "Line": "1",
+                "FunctionName": "UNKNOWN",
+                "QualifiedFunctionName": "UNKNOWN",
+                "FunctionPrototype": "UNKNOWN",
+                "Scope": "UNKNOWN"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "1052258512",
+              "PrototypeHash": "0",
+              "FlawHash": "2189615053",
+              "FlawHashCount": "2",
+              "FlawHashOrdinal": "2",
+              "CauseHash": "0",
+              "CauseHashCount": "0",
+              "CauseHashOrdinal": "0"
+            }
+          },
+          {
+            "Title": "hardcodepasswdset",
+            "IssueId": "1147",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "crypto",
+            "IssueType": "Use of Hard-coded Password",
+            "CWEId": "259",
+            "DisplayText": "\u003cspan\u003eThis variable assignment uses a hard-coded password that may compromise system security in a way that cannot be easily remedied.  The use of a hard-coded password significantly increases the possibility that the account being protected will be compromised.  Moreover, the password cannot be changed without patching the software.  If a hard-coded password is compromised in a commercial product, all deployed instances may be vulnerable to attack.  In some cases, this finding may indicate a reference to a password (e.g. the name of a key in a properties file) rather than an actual password. hardcodepasswdset\u003c/span\u003e \u003cspan\u003eStore passwords out-of-band from the application code.  Follow best practices for protecting credentials stored in locations such as configuration or properties files. An HSM may be appropriate for particularly sensitive credentials.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/259.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/utils/Constants.java",
+                "Line": "13",
+                "FunctionName": "!ctor",
+                "QualifiedFunctionName": "com.veracode.verademo.utils.Constants.!ctor",
+                "FunctionPrototype": "void !ctor()",
+                "Scope": "com.veracode.verademo.utils.Constants"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "3844508335",
+              "PrototypeHash": "4146034803",
+              "FlawHash": "1879343762",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "3691195164",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.util.Random.nextInt",
+            "IssueId": "1022",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "reliability",
+            "IssueType": "Insufficient Entropy",
+            "CWEId": "331",
+            "DisplayText": "\u003cspan\u003eStandard random number generators do not provide a sufficient amount of entropy when used for security purposes. Attackers can brute force the output of pseudorandom number generators such as rand().\u003c/span\u003e \u003cspan\u003eIf this random number is used where security is a concern, such as generating a session key or session identifier, use a trusted cryptographic random number generator instead.  These can be found on the Windows platform in the CryptoAPI or in an open source library such as OpenSSL.  In Java, use the SecureRandom object to ensure sufficient entropy.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/331.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/Utils.java",
+                "Line": "245",
+                "FunctionName": "processReset",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.Utils.processReset",
+                "FunctionPrototype": "java.lang.String processReset(java.lang.String, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.Utils"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "962783076",
+              "PrototypeHash": "3980016362",
+              "FlawHash": "1526950965",
+              "FlawHashCount": "4",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1176028798",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.util.Random.nextInt",
+            "IssueId": "1017",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "reliability",
+            "IssueType": "Insufficient Entropy",
+            "CWEId": "331",
+            "DisplayText": "\u003cspan\u003eStandard random number generators do not provide a sufficient amount of entropy when used for security purposes. Attackers can brute force the output of pseudorandom number generators such as rand().\u003c/span\u003e \u003cspan\u003eIf this random number is used where security is a concern, such as generating a session key or session identifier, use a trusted cryptographic random number generator instead.  These can be found on the Windows platform in the CryptoAPI or in an open source library such as OpenSSL.  In Java, use the SecureRandom object to ensure sufficient entropy.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/331.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/Utils.java",
+                "Line": "247",
+                "FunctionName": "processReset",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.Utils.processReset",
+                "FunctionPrototype": "java.lang.String processReset(java.lang.String, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.Utils"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "962783076",
+              "PrototypeHash": "3980016362",
+              "FlawHash": "1526950965",
+              "FlawHashCount": "4",
+              "FlawHashOrdinal": "2",
+              "CauseHash": "1176028798",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.util.Random.nextBoolean",
+            "IssueId": "1015",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "reliability",
+            "IssueType": "Insufficient Entropy",
+            "CWEId": "331",
+            "DisplayText": "\u003cspan\u003eStandard random number generators do not provide a sufficient amount of entropy when used for security purposes. Attackers can brute force the output of pseudorandom number generators such as rand().\u003c/span\u003e \u003cspan\u003eIf this random number is used where security is a concern, such as generating a session key or session identifier, use a trusted cryptographic random number generator instead.  These can be found on the Windows platform in the CryptoAPI or in an open source library such as OpenSSL.  In Java, use the SecureRandom object to ensure sufficient entropy.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/331.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/Utils.java",
+                "Line": "267",
+                "FunctionName": "processReset",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.Utils.processReset",
+                "FunctionPrototype": "java.lang.String processReset(java.lang.String, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.Utils"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "962783076",
+              "PrototypeHash": "3980016362",
+              "FlawHash": "3725075907",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "2866949028",
+              "CauseHashCount": "2",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.util.Random.nextInt",
+            "IssueId": "1020",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "reliability",
+            "IssueType": "Insufficient Entropy",
+            "CWEId": "331",
+            "DisplayText": "\u003cspan\u003eStandard random number generators do not provide a sufficient amount of entropy when used for security purposes. Attackers can brute force the output of pseudorandom number generators such as rand().\u003c/span\u003e \u003cspan\u003eIf this random number is used where security is a concern, such as generating a session key or session identifier, use a trusted cryptographic random number generator instead.  These can be found on the Windows platform in the CryptoAPI or in an open source library such as OpenSSL.  In Java, use the SecureRandom object to ensure sufficient entropy.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/331.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/Utils.java",
+                "Line": "286",
+                "FunctionName": "processReset",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.Utils.processReset",
+                "FunctionPrototype": "java.lang.String processReset(java.lang.String, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.Utils"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "962783076",
+              "PrototypeHash": "3980016362",
+              "FlawHash": "766314640",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "271686581",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.util.Random.nextInt",
+            "IssueId": "1018",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "reliability",
+            "IssueType": "Insufficient Entropy",
+            "CWEId": "331",
+            "DisplayText": "\u003cspan\u003eStandard random number generators do not provide a sufficient amount of entropy when used for security purposes. Attackers can brute force the output of pseudorandom number generators such as rand().\u003c/span\u003e \u003cspan\u003eIf this random number is used where security is a concern, such as generating a session key or session identifier, use a trusted cryptographic random number generator instead.  These can be found on the Windows platform in the CryptoAPI or in an open source library such as OpenSSL.  In Java, use the SecureRandom object to ensure sufficient entropy.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/331.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/Utils.java",
+                "Line": "288",
+                "FunctionName": "processReset",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.Utils.processReset",
+                "FunctionPrototype": "java.lang.String processReset(java.lang.String, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.Utils"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "962783076",
+              "PrototypeHash": "3980016362",
+              "FlawHash": "1526950965",
+              "FlawHashCount": "4",
+              "FlawHashOrdinal": "3",
+              "CauseHash": "1176028798",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.util.Random.nextInt",
+            "IssueId": "1019",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "reliability",
+            "IssueType": "Insufficient Entropy",
+            "CWEId": "331",
+            "DisplayText": "\u003cspan\u003eStandard random number generators do not provide a sufficient amount of entropy when used for security purposes. Attackers can brute force the output of pseudorandom number generators such as rand().\u003c/span\u003e \u003cspan\u003eIf this random number is used where security is a concern, such as generating a session key or session identifier, use a trusted cryptographic random number generator instead.  These can be found on the Windows platform in the CryptoAPI or in an open source library such as OpenSSL.  In Java, use the SecureRandom object to ensure sufficient entropy.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/331.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/Utils.java",
+                "Line": "304",
+                "FunctionName": "processReset",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.Utils.processReset",
+                "FunctionPrototype": "java.lang.String processReset(java.lang.String, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.Utils"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "962783076",
+              "PrototypeHash": "3980016362",
+              "FlawHash": "537735606",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1057423377",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.util.Random.nextInt",
+            "IssueId": "1021",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "reliability",
+            "IssueType": "Insufficient Entropy",
+            "CWEId": "331",
+            "DisplayText": "\u003cspan\u003eStandard random number generators do not provide a sufficient amount of entropy when used for security purposes. Attackers can brute force the output of pseudorandom number generators such as rand().\u003c/span\u003e \u003cspan\u003eIf this random number is used where security is a concern, such as generating a session key or session identifier, use a trusted cryptographic random number generator instead.  These can be found on the Windows platform in the CryptoAPI or in an open source library such as OpenSSL.  In Java, use the SecureRandom object to ensure sufficient entropy.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/331.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/Utils.java",
+                "Line": "306",
+                "FunctionName": "processReset",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.Utils.processReset",
+                "FunctionPrototype": "java.lang.String processReset(java.lang.String, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.Utils"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "962783076",
+              "PrototypeHash": "3980016362",
+              "FlawHash": "3782842731",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "271686581",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.util.Random.nextInt",
+            "IssueId": "1023",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "reliability",
+            "IssueType": "Insufficient Entropy",
+            "CWEId": "331",
+            "DisplayText": "\u003cspan\u003eStandard random number generators do not provide a sufficient amount of entropy when used for security purposes. Attackers can brute force the output of pseudorandom number generators such as rand().\u003c/span\u003e \u003cspan\u003eIf this random number is used where security is a concern, such as generating a session key or session identifier, use a trusted cryptographic random number generator instead.  These can be found on the Windows platform in the CryptoAPI or in an open source library such as OpenSSL.  In Java, use the SecureRandom object to ensure sufficient entropy.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/331.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/Utils.java",
+                "Line": "307",
+                "FunctionName": "processReset",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.Utils.processReset",
+                "FunctionPrototype": "java.lang.String processReset(java.lang.String, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.Utils"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "962783076",
+              "PrototypeHash": "3980016362",
+              "FlawHash": "812591788",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "3359223437",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.util.Random.nextInt",
+            "IssueId": "1016",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "reliability",
+            "IssueType": "Insufficient Entropy",
+            "CWEId": "331",
+            "DisplayText": "\u003cspan\u003eStandard random number generators do not provide a sufficient amount of entropy when used for security purposes. Attackers can brute force the output of pseudorandom number generators such as rand().\u003c/span\u003e \u003cspan\u003eIf this random number is used where security is a concern, such as generating a session key or session identifier, use a trusted cryptographic random number generator instead.  These can be found on the Windows platform in the CryptoAPI or in an open source library such as OpenSSL.  In Java, use the SecureRandom object to ensure sufficient entropy.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/331.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/Utils.java",
+                "Line": "311",
+                "FunctionName": "processReset",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.Utils.processReset",
+                "FunctionPrototype": "java.lang.String processReset(java.lang.String, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.Utils"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "962783076",
+              "PrototypeHash": "3980016362",
+              "FlawHash": "1526950965",
+              "FlawHashCount": "4",
+              "FlawHashOrdinal": "4",
+              "CauseHash": "1176028798",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "org.apache.log4j.Category.info",
+            "IssueId": "1142",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "taint",
+            "IssueType": "Improper Output Neutralization for Logs",
+            "CWEId": "117",
+            "DisplayText": "\u003cspan\u003eThis call to org.apache.log4j.Category.info() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker\u0027s tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to info() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.\u003c/span\u003e \u003cspan\u003eAvoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/117.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://www.owasp.org/index.php/Log_injection\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://webappsec.pbworks.com/Improper-Output-Handling\"\u003eWASC\u003c/a\u003e \u003ca href\u003d\"https://help.veracode.com/reader/4EKhlLSMHm5jC8P8j3XccQ/IiF_rOE79ANbwnZwreSPGA\"\u003eSupported Cleansers\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/UserController.java",
+                "Line": "98",
+                "FunctionName": "processLogin",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.UserController.processLogin",
+                "FunctionPrototype": "java.lang.String processLogin(java.lang.String, java.lang.String, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.UserController"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "190200079",
+              "PrototypeHash": "547887729",
+              "FlawHash": "2777968969",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "3827029274",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "org.apache.log4j.Category.info",
+            "IssueId": "1140",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "taint",
+            "IssueType": "Improper Output Neutralization for Logs",
+            "CWEId": "117",
+            "DisplayText": "\u003cspan\u003eThis call to org.apache.log4j.Category.info() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker\u0027s tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to info() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.\u003c/span\u003e \u003cspan\u003eAvoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/117.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://www.owasp.org/index.php/Log_injection\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://webappsec.pbworks.com/Improper-Output-Handling\"\u003eWASC\u003c/a\u003e \u003ca href\u003d\"https://help.veracode.com/reader/4EKhlLSMHm5jC8P8j3XccQ/IiF_rOE79ANbwnZwreSPGA\"\u003eSupported Cleansers\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/UserController.java",
+                "Line": "122",
+                "FunctionName": "processLogin",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.UserController.processLogin",
+                "FunctionPrototype": "java.lang.String processLogin(java.lang.String, java.lang.String, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.UserController"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "190200079",
+              "PrototypeHash": "547887729",
+              "FlawHash": "50176927",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "3590439925",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "org.apache.log4j.Category.info",
+            "IssueId": "1144",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "taint",
+            "IssueType": "Improper Output Neutralization for Logs",
+            "CWEId": "117",
+            "DisplayText": "\u003cspan\u003eThis call to org.apache.log4j.Category.info() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker\u0027s tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to info() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.\u003c/span\u003e \u003cspan\u003eAvoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/117.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://www.owasp.org/index.php/Log_injection\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://webappsec.pbworks.com/Improper-Output-Handling\"\u003eWASC\u003c/a\u003e \u003ca href\u003d\"https://help.veracode.com/reader/4EKhlLSMHm5jC8P8j3XccQ/IiF_rOE79ANbwnZwreSPGA\"\u003eSupported Cleansers\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/UserController.java",
+                "Line": "167",
+                "FunctionName": "processLogin",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.UserController.processLogin",
+                "FunctionPrototype": "java.lang.String processLogin(java.lang.String, java.lang.String, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.UserController"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "190200079",
+              "PrototypeHash": "547887729",
+              "FlawHash": "1642856939",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "63243299",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            },
+            "Mitigation": {
+              "CustomCleanser": {
+                "Name": "CRLF Cleanser",
+                "Annotation": "com.veracode.annotation.CRLFCleanser",
+                "FrameId": "3",
+                "CleanserPrototype": "java.lang.String cleanLog(java.lang.String)"
+              }
+            }
+          },
+          {
+            "Title": "processLogin",
+            "IssueId": "1000",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "taint",
+            "IssueType": "External Control of File Name or Path",
+            "CWEId": "73",
+            "DisplayText": "\u003cspan\u003eThis call to processLogin() contains a path manipulation flaw.  The argument to the function is a filename constructed using untrusted input.  If an attacker is allowed to specify all or part of the filename, it may be possible to gain unauthorized access to files on the server, including those outside the webroot, that would be normally be inaccessible to end users.  The level of exposure depends on the effectiveness of input validation routines, if any. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.\u003c/span\u003e \u003cspan\u003eValidate all untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.  When using blocklists, be sure that the sanitizing routine performs a sufficient number of iterations to remove all instances of disallowed characters.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/73.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://webappsec.pbworks.com/Path-Traversal\"\u003eWASC\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/UserController.java",
+                "Line": "168",
+                "FunctionName": "processLogin",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.UserController.processLogin",
+                "FunctionPrototype": "java.lang.String processLogin(java.lang.String, java.lang.String, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.UserController"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "190200079",
+              "PrototypeHash": "547887729",
+              "FlawHash": "2083412287",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1522093433",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "org.apache.log4j.Category.info",
+            "IssueId": "1139",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "taint",
+            "IssueType": "Improper Output Neutralization for Logs",
+            "CWEId": "117",
+            "DisplayText": "\u003cspan\u003eThis call to org.apache.log4j.Category.info() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker\u0027s tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to info() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.\u003c/span\u003e \u003cspan\u003eAvoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/117.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://www.owasp.org/index.php/Log_injection\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://webappsec.pbworks.com/Improper-Output-Handling\"\u003eWASC\u003c/a\u003e \u003ca href\u003d\"https://help.veracode.com/reader/4EKhlLSMHm5jC8P8j3XccQ/IiF_rOE79ANbwnZwreSPGA\"\u003eSupported Cleansers\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/BlabController.java",
+                "Line": "481",
+                "FunctionName": "processBlabbers",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.BlabController.processBlabbers",
+                "FunctionPrototype": "java.lang.String processBlabbers(java.lang.Integer, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.BlabController"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "1211882871",
+              "PrototypeHash": "1036108318",
+              "FlawHash": "998507039",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "3529978797",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            },
+            "Mitigation": {
+              "CustomCleanser": {
+                "Name": "CRLF Cleanser",
+                "Annotation": "com.veracode.annotation.CRLFCleanser",
+                "FrameId": "3",
+                "CleanserPrototype": "java.lang.String cleanLog(java.lang.String)"
+              }
+            }
+          },
+          {
+            "Title": "javax.servlet.jsp.JspWriter.print",
+            "IssueId": "1160",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "taint",
+            "IssueType": "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS)",
+            "CWEId": "80",
+            "DisplayText": "\u003cspan\u003eThis call to javax.servlet.jsp.JspWriter.print() contains a cross-site scripting (XSS) flaw.  The application populates the HTTP response with untrusted input, allowing an attacker to embed malicious content, such as Javascript code, which will be executed in the context of the victim\u0027s browser.  XSS vulnerabilities are commonly exploited to steal or manipulate cookies, modify presentation of content, and compromise confidential information, with new attack vectors being discovered on a regular basis. The first argument to print() contains tainted data from the variable realName. The tainted data originated from earlier calls to AnnotationVirtualController.vc_annotation_entry, and java.sql.Statement.executeQuery. The tainted data is directed into an output stream returned by javax.servlet.jsp.JspWriter.\u003c/span\u003e \u003cspan\u003eUse contextual escaping on all untrusted data before using it to construct any portion of an HTTP response.  The escaping method should be chosen based on the specific use case of the untrusted data, otherwise it may not protect fully against the attack. For example, if the data is being written to the body of an HTML page, use HTML entity escaping; if the data is being written to an attribute, use attribute escaping; etc.  Both the OWASP Java Encoder library and the Microsoft AntiXSS library provide contextual escaping methods. For more details on contextual escaping, see https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md. In addition, as a best practice, always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/79.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://www.owasp.org/index.php/XSS\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://webappsec.pbworks.com/Cross-Site-Scripting\"\u003eWASC\u003c/a\u003e \u003ca href\u003d\"https://help.veracode.com/reader/4EKhlLSMHm5jC8P8j3XccQ/IiF_rOE79ANbwnZwreSPGA\"\u003eSupported Cleansers\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "WEB-INF/views/profile.jsp",
+                "Line": "80",
+                "FunctionName": "_jspService",
+                "QualifiedFunctionName": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.profile_jsp._jspService",
+                "FunctionPrototype": "void _jspService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)",
+                "Scope": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.profile_jsp"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "692106038",
+              "PrototypeHash": "1360154352",
+              "FlawHash": "3765405848",
+              "FlawHashCount": "3",
+              "FlawHashOrdinal": "2",
+              "CauseHash": "153293750",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "javax.servlet.jsp.JspWriter.print",
+            "IssueId": "1162",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "taint",
+            "IssueType": "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS)",
+            "CWEId": "80",
+            "DisplayText": "\u003cspan\u003eThis call to javax.servlet.jsp.JspWriter.print() contains a cross-site scripting (XSS) flaw.  The application populates the HTTP response with untrusted input, allowing an attacker to embed malicious content, such as Javascript code, which will be executed in the context of the victim\u0027s browser.  XSS vulnerabilities are commonly exploited to steal or manipulate cookies, modify presentation of content, and compromise confidential information, with new attack vectors being discovered on a regular basis. The first argument to print() contains tainted data from the variable blabName. The tainted data originated from earlier calls to AnnotationVirtualController.vc_annotation_entry, and java.sql.Statement.executeQuery. The tainted data is directed into an output stream returned by javax.servlet.jsp.JspWriter.\u003c/span\u003e \u003cspan\u003eUse contextual escaping on all untrusted data before using it to construct any portion of an HTTP response.  The escaping method should be chosen based on the specific use case of the untrusted data, otherwise it may not protect fully against the attack. For example, if the data is being written to the body of an HTML page, use HTML entity escaping; if the data is being written to an attribute, use attribute escaping; etc.  Both the OWASP Java Encoder library and the Microsoft AntiXSS library provide contextual escaping methods. For more details on contextual escaping, see https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md. In addition, as a best practice, always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/79.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://www.owasp.org/index.php/XSS\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://webappsec.pbworks.com/Cross-Site-Scripting\"\u003eWASC\u003c/a\u003e \u003ca href\u003d\"https://help.veracode.com/reader/4EKhlLSMHm5jC8P8j3XccQ/IiF_rOE79ANbwnZwreSPGA\"\u003eSupported Cleansers\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "WEB-INF/views/profile.jsp",
+                "Line": "84",
+                "FunctionName": "_jspService",
+                "QualifiedFunctionName": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.profile_jsp._jspService",
+                "FunctionPrototype": "void _jspService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)",
+                "Scope": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.profile_jsp"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "692106038",
+              "PrototypeHash": "1360154352",
+              "FlawHash": "3765405848",
+              "FlawHashCount": "3",
+              "FlawHashOrdinal": "3",
+              "CauseHash": "153293750",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "javax.servlet.jsp.JspWriter.print",
+            "IssueId": "1157",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "taint",
+            "IssueType": "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS)",
+            "CWEId": "80",
+            "DisplayText": "\u003cspan\u003eThis call to javax.servlet.jsp.JspWriter.print() contains a cross-site scripting (XSS) flaw.  The application populates the HTTP response with untrusted input, allowing an attacker to embed malicious content, such as Javascript code, which will be executed in the context of the victim\u0027s browser.  XSS vulnerabilities are commonly exploited to steal or manipulate cookies, modify presentation of content, and compromise confidential information, with new attack vectors being discovered on a regular basis. The first argument to print() contains tainted data from the variable hecklerName.get(). The tainted data originated from an earlier call to java.sql.PreparedStatement.executeQuery. The tainted data is directed into an output stream returned by javax.servlet.jsp.JspWriter.\u003c/span\u003e \u003cspan\u003eUse contextual escaping on all untrusted data before using it to construct any portion of an HTTP response.  The escaping method should be chosen based on the specific use case of the untrusted data, otherwise it may not protect fully against the attack. For example, if the data is being written to the body of an HTML page, use HTML entity escaping; if the data is being written to an attribute, use attribute escaping; etc.  Both the OWASP Java Encoder library and the Microsoft AntiXSS library provide contextual escaping methods. For more details on contextual escaping, see https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md. In addition, as a best practice, always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/79.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://www.owasp.org/index.php/XSS\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://webappsec.pbworks.com/Cross-Site-Scripting\"\u003eWASC\u003c/a\u003e \u003ca href\u003d\"https://help.veracode.com/reader/4EKhlLSMHm5jC8P8j3XccQ/IiF_rOE79ANbwnZwreSPGA\"\u003eSupported Cleansers\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "WEB-INF/views/profile.jsp",
+                "Line": "117",
+                "FunctionName": "_jspService",
+                "QualifiedFunctionName": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.profile_jsp._jspService",
+                "FunctionPrototype": "void _jspService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)",
+                "Scope": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.profile_jsp"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "692106038",
+              "PrototypeHash": "1360154352",
+              "FlawHash": "701922364",
+              "FlawHashCount": "2",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1589644387",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "javax.servlet.jsp.JspWriter.print",
+            "IssueId": "1150",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "taint",
+            "IssueType": "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS)",
+            "CWEId": "80",
+            "DisplayText": "\u003cspan\u003eThis call to javax.servlet.jsp.JspWriter.print() contains a cross-site scripting (XSS) flaw.  The application populates the HTTP response with untrusted input, allowing an attacker to embed malicious content, such as Javascript code, which will be executed in the context of the victim\u0027s browser.  XSS vulnerabilities are commonly exploited to steal or manipulate cookies, modify presentation of content, and compromise confidential information, with new attack vectors being discovered on a regular basis. The first argument to print() contains tainted data from the variable target. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry. The tainted data is directed into an output stream returned by javax.servlet.jsp.JspWriter.\u003c/span\u003e \u003cspan\u003eUse contextual escaping on all untrusted data before using it to construct any portion of an HTTP response.  The escaping method should be chosen based on the specific use case of the untrusted data, otherwise it may not protect fully against the attack. For example, if the data is being written to the body of an HTML page, use HTML entity escaping; if the data is being written to an attribute, use attribute escaping; etc.  Both the OWASP Java Encoder library and the Microsoft AntiXSS library provide contextual escaping methods. For more details on contextual escaping, see https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md. In addition, as a best practice, always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/79.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://www.owasp.org/index.php/XSS\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://webappsec.pbworks.com/Cross-Site-Scripting\"\u003eWASC\u003c/a\u003e \u003ca href\u003d\"https://help.veracode.com/reader/4EKhlLSMHm5jC8P8j3XccQ/IiF_rOE79ANbwnZwreSPGA\"\u003eSupported Cleansers\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "WEB-INF/views/login.jsp",
+                "Line": "73",
+                "FunctionName": "_jspService",
+                "QualifiedFunctionName": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.login_jsp._jspService",
+                "FunctionPrototype": "void _jspService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)",
+                "Scope": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.login_jsp"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "2303903034",
+              "PrototypeHash": "3087822160",
+              "FlawHash": "3765405848",
+              "FlawHashCount": "2",
+              "FlawHashOrdinal": "2",
+              "CauseHash": "153293750",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "javax.servlet.jsp.JspWriter.print",
+            "IssueId": "1165",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "taint",
+            "IssueType": "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS)",
+            "CWEId": "80",
+            "DisplayText": "\u003cspan\u003eThis call to javax.servlet.jsp.JspWriter.print() contains a cross-site scripting (XSS) flaw.  The application populates the HTTP response with untrusted input, allowing an attacker to embed malicious content, such as Javascript code, which will be executed in the context of the victim\u0027s browser.  XSS vulnerabilities are commonly exploited to steal or manipulate cookies, modify presentation of content, and compromise confidential information, with new attack vectors being discovered on a regular basis. The first argument to print() contains tainted data from the variable currentUser. The tainted data originated from earlier calls to AnnotationVirtualController.vc_annotation_entry, and java.sql.Statement.executeQuery. The tainted data is directed into an output stream returned by javax.servlet.jsp.JspWriter.\u003c/span\u003e \u003cspan\u003eUse contextual escaping on all untrusted data before using it to construct any portion of an HTTP response.  The escaping method should be chosen based on the specific use case of the untrusted data, otherwise it may not protect fully against the attack. For example, if the data is being written to the body of an HTML page, use HTML entity escaping; if the data is being written to an attribute, use attribute escaping; etc.  Both the OWASP Java Encoder library and the Microsoft AntiXSS library provide contextual escaping methods. For more details on contextual escaping, see https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md. In addition, as a best practice, always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/79.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://www.owasp.org/index.php/XSS\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://webappsec.pbworks.com/Cross-Site-Scripting\"\u003eWASC\u003c/a\u003e \u003ca href\u003d\"https://help.veracode.com/reader/4EKhlLSMHm5jC8P8j3XccQ/IiF_rOE79ANbwnZwreSPGA\"\u003eSupported Cleansers\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "WEB-INF/views/feed.jsp",
+                "Line": "54",
+                "FunctionName": "_jspService",
+                "QualifiedFunctionName": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.feed_jsp._jspService",
+                "FunctionPrototype": "void _jspService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)",
+                "Scope": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.feed_jsp"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "2420471427",
+              "PrototypeHash": "4175656100",
+              "FlawHash": "3765405848",
+              "FlawHashCount": "2",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "153293750",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "javax.servlet.jsp.JspWriter.print",
+            "IssueId": "1169",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "taint",
+            "IssueType": "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS)",
+            "CWEId": "80",
+            "DisplayText": "\u003cspan\u003eThis call to javax.servlet.jsp.JspWriter.print() contains a cross-site scripting (XSS) flaw.  The application populates the HTTP response with untrusted input, allowing an attacker to embed malicious content, such as Javascript code, which will be executed in the context of the victim\u0027s browser.  XSS vulnerabilities are commonly exploited to steal or manipulate cookies, modify presentation of content, and compromise confidential information, with new attack vectors being discovered on a regular basis. The first argument to print() contains tainted data from the variable contentForMe.get(). The tainted data originated from an earlier call to java.sql.PreparedStatement.executeQuery. The tainted data is directed into an output stream returned by javax.servlet.jsp.JspWriter.\u003c/span\u003e \u003cspan\u003eUse contextual escaping on all untrusted data before using it to construct any portion of an HTTP response.  The escaping method should be chosen based on the specific use case of the untrusted data, otherwise it may not protect fully against the attack. For example, if the data is being written to the body of an HTML page, use HTML entity escaping; if the data is being written to an attribute, use attribute escaping; etc.  Both the OWASP Java Encoder library and the Microsoft AntiXSS library provide contextual escaping methods. For more details on contextual escaping, see https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md. In addition, as a best practice, always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/79.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://www.owasp.org/index.php/XSS\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://webappsec.pbworks.com/Cross-Site-Scripting\"\u003eWASC\u003c/a\u003e \u003ca href\u003d\"https://help.veracode.com/reader/4EKhlLSMHm5jC8P8j3XccQ/IiF_rOE79ANbwnZwreSPGA\"\u003eSupported Cleansers\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "WEB-INF/views/feed.jsp",
+                "Line": "92",
+                "FunctionName": "_jspService",
+                "QualifiedFunctionName": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.feed_jsp._jspService",
+                "FunctionPrototype": "void _jspService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)",
+                "Scope": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.feed_jsp"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "2420471427",
+              "PrototypeHash": "4175656100",
+              "FlawHash": "701922364",
+              "FlawHashCount": "5",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1589644387",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "javax.servlet.jsp.JspWriter.print",
+            "IssueId": "1155",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "taint",
+            "IssueType": "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS)",
+            "CWEId": "80",
+            "DisplayText": "\u003cspan\u003eThis call to javax.servlet.jsp.JspWriter.print() contains a cross-site scripting (XSS) flaw.  The application populates the HTTP response with untrusted input, allowing an attacker to embed malicious content, such as Javascript code, which will be executed in the context of the victim\u0027s browser.  XSS vulnerabilities are commonly exploited to steal or manipulate cookies, modify presentation of content, and compromise confidential information, with new attack vectors being discovered on a regular basis. The first argument to print() contains tainted data from the variable blabName.get(). The tainted data originated from earlier calls to AnnotationVirtualController.vc_annotation_entry, java.sql.PreparedStatement.executeQuery, and java.sql.Statement.executeQuery. The tainted data is directed into an output stream returned by javax.servlet.jsp.JspWriter.\u003c/span\u003e \u003cspan\u003eUse contextual escaping on all untrusted data before using it to construct any portion of an HTTP response.  The escaping method should be chosen based on the specific use case of the untrusted data, otherwise it may not protect fully against the attack. For example, if the data is being written to the body of an HTML page, use HTML entity escaping; if the data is being written to an attribute, use attribute escaping; etc.  Both the OWASP Java Encoder library and the Microsoft AntiXSS library provide contextual escaping methods. For more details on contextual escaping, see https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md. In addition, as a best practice, always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/79.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://www.owasp.org/index.php/XSS\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://webappsec.pbworks.com/Cross-Site-Scripting\"\u003eWASC\u003c/a\u003e \u003ca href\u003d\"https://help.veracode.com/reader/4EKhlLSMHm5jC8P8j3XccQ/IiF_rOE79ANbwnZwreSPGA\"\u003eSupported Cleansers\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "WEB-INF/views/feed.jsp",
+                "Line": "93",
+                "FunctionName": "_jspService",
+                "QualifiedFunctionName": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.feed_jsp._jspService",
+                "FunctionPrototype": "void _jspService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)",
+                "Scope": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.feed_jsp"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "2420471427",
+              "PrototypeHash": "4175656100",
+              "FlawHash": "701922364",
+              "FlawHashCount": "5",
+              "FlawHashOrdinal": "2",
+              "CauseHash": "1589644387",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "javax.servlet.jsp.JspWriter.print",
+            "IssueId": "1149",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "taint",
+            "IssueType": "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS)",
+            "CWEId": "80",
+            "DisplayText": "\u003cspan\u003eThis call to javax.servlet.jsp.JspWriter.print() contains a cross-site scripting (XSS) flaw.  The application populates the HTTP response with untrusted input, allowing an attacker to embed malicious content, such as Javascript code, which will be executed in the context of the victim\u0027s browser.  XSS vulnerabilities are commonly exploited to steal or manipulate cookies, modify presentation of content, and compromise confidential information, with new attack vectors being discovered on a regular basis. The first argument to print() contains tainted data from the variable contentByMe.get(). The tainted data originated from an earlier call to java.sql.PreparedStatement.executeQuery. The tainted data is directed into an output stream returned by javax.servlet.jsp.JspWriter.\u003c/span\u003e \u003cspan\u003eUse contextual escaping on all untrusted data before using it to construct any portion of an HTTP response.  The escaping method should be chosen based on the specific use case of the untrusted data, otherwise it may not protect fully against the attack. For example, if the data is being written to the body of an HTML page, use HTML entity escaping; if the data is being written to an attribute, use attribute escaping; etc.  Both the OWASP Java Encoder library and the Microsoft AntiXSS library provide contextual escaping methods. For more details on contextual escaping, see https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md. In addition, as a best practice, always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/79.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://www.owasp.org/index.php/XSS\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://webappsec.pbworks.com/Cross-Site-Scripting\"\u003eWASC\u003c/a\u003e \u003ca href\u003d\"https://help.veracode.com/reader/4EKhlLSMHm5jC8P8j3XccQ/IiF_rOE79ANbwnZwreSPGA\"\u003eSupported Cleansers\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "WEB-INF/views/feed.jsp",
+                "Line": "128",
+                "FunctionName": "_jspService",
+                "QualifiedFunctionName": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.feed_jsp._jspService",
+                "FunctionPrototype": "void _jspService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)",
+                "Scope": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.feed_jsp"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "2420471427",
+              "PrototypeHash": "4175656100",
+              "FlawHash": "701922364",
+              "FlawHashCount": "5",
+              "FlawHashOrdinal": "4",
+              "CauseHash": "1589644387",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "javax.servlet.jsp.JspWriter.print",
+            "IssueId": "1154",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "taint",
+            "IssueType": "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS)",
+            "CWEId": "80",
+            "DisplayText": "\u003cspan\u003eThis call to javax.servlet.jsp.JspWriter.print() contains a cross-site scripting (XSS) flaw.  The application populates the HTTP response with untrusted input, allowing an attacker to embed malicious content, such as Javascript code, which will be executed in the context of the victim\u0027s browser.  XSS vulnerabilities are commonly exploited to steal or manipulate cookies, modify presentation of content, and compromise confidential information, with new attack vectors being discovered on a regular basis. The first argument to print() contains tainted data from the variable blabberName.get(). The tainted data originated from an earlier call to java.sql.PreparedStatement.executeQuery. The tainted data is directed into an output stream returned by javax.servlet.jsp.JspWriter.\u003c/span\u003e \u003cspan\u003eUse contextual escaping on all untrusted data before using it to construct any portion of an HTTP response.  The escaping method should be chosen based on the specific use case of the untrusted data, otherwise it may not protect fully against the attack. For example, if the data is being written to the body of an HTML page, use HTML entity escaping; if the data is being written to an attribute, use attribute escaping; etc.  Both the OWASP Java Encoder library and the Microsoft AntiXSS library provide contextual escaping methods. For more details on contextual escaping, see https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md. In addition, as a best practice, always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/79.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://www.owasp.org/index.php/XSS\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://webappsec.pbworks.com/Cross-Site-Scripting\"\u003eWASC\u003c/a\u003e \u003ca href\u003d\"https://help.veracode.com/reader/4EKhlLSMHm5jC8P8j3XccQ/IiF_rOE79ANbwnZwreSPGA\"\u003eSupported Cleansers\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "WEB-INF/views/blabbers.jsp",
+                "Line": "94",
+                "FunctionName": "_jspService",
+                "QualifiedFunctionName": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.blabbers_jsp._jspService",
+                "FunctionPrototype": "void _jspService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)",
+                "Scope": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.blabbers_jsp"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "3620571190",
+              "PrototypeHash": "2623319697",
+              "FlawHash": "701922364",
+              "FlawHashCount": "2",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1589644387",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "javax.servlet.jsp.JspWriter.print",
+            "IssueId": "1148",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "taint",
+            "IssueType": "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS)",
+            "CWEId": "80",
+            "DisplayText": "\u003cspan\u003eThis call to javax.servlet.jsp.JspWriter.print() contains a cross-site scripting (XSS) flaw.  The application populates the HTTP response with untrusted input, allowing an attacker to embed malicious content, such as Javascript code, which will be executed in the context of the victim\u0027s browser.  XSS vulnerabilities are commonly exploited to steal or manipulate cookies, modify presentation of content, and compromise confidential information, with new attack vectors being discovered on a regular basis. The first argument to print() contains tainted data from the variable blab_name. The tainted data originated from an earlier call to java.sql.PreparedStatement.executeQuery. The tainted data is directed into an output stream returned by javax.servlet.jsp.JspWriter.\u003c/span\u003e \u003cspan\u003eUse contextual escaping on all untrusted data before using it to construct any portion of an HTTP response.  The escaping method should be chosen based on the specific use case of the untrusted data, otherwise it may not protect fully against the attack. For example, if the data is being written to the body of an HTML page, use HTML entity escaping; if the data is being written to an attribute, use attribute escaping; etc.  Both the OWASP Java Encoder library and the Microsoft AntiXSS library provide contextual escaping methods. For more details on contextual escaping, see https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md. In addition, as a best practice, always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/79.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://www.owasp.org/index.php/XSS\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://webappsec.pbworks.com/Cross-Site-Scripting\"\u003eWASC\u003c/a\u003e \u003ca href\u003d\"https://help.veracode.com/reader/4EKhlLSMHm5jC8P8j3XccQ/IiF_rOE79ANbwnZwreSPGA\"\u003eSupported Cleansers\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "WEB-INF/views/blab.jsp",
+                "Line": "54",
+                "FunctionName": "_jspService",
+                "QualifiedFunctionName": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.blab_jsp._jspService",
+                "FunctionPrototype": "void _jspService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)",
+                "Scope": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.blab_jsp"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "2719266612",
+              "PrototypeHash": "4140704412",
+              "FlawHash": "3765405848",
+              "FlawHashCount": "4",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "153293750",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "javax.servlet.jsp.JspWriter.print",
+            "IssueId": "1158",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "taint",
+            "IssueType": "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS)",
+            "CWEId": "80",
+            "DisplayText": "\u003cspan\u003eThis call to javax.servlet.jsp.JspWriter.print() contains a cross-site scripting (XSS) flaw.  The application populates the HTTP response with untrusted input, allowing an attacker to embed malicious content, such as Javascript code, which will be executed in the context of the victim\u0027s browser.  XSS vulnerabilities are commonly exploited to steal or manipulate cookies, modify presentation of content, and compromise confidential information, with new attack vectors being discovered on a regular basis. The first argument to print() contains tainted data from the variable content. The tainted data originated from an earlier call to java.sql.PreparedStatement.executeQuery. The tainted data is directed into an output stream returned by javax.servlet.jsp.JspWriter.\u003c/span\u003e \u003cspan\u003eUse contextual escaping on all untrusted data before using it to construct any portion of an HTTP response.  The escaping method should be chosen based on the specific use case of the untrusted data, otherwise it may not protect fully against the attack. For example, if the data is being written to the body of an HTML page, use HTML entity escaping; if the data is being written to an attribute, use attribute escaping; etc.  Both the OWASP Java Encoder library and the Microsoft AntiXSS library provide contextual escaping methods. For more details on contextual escaping, see https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md. In addition, as a best practice, always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/79.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://www.owasp.org/index.php/XSS\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://webappsec.pbworks.com/Cross-Site-Scripting\"\u003eWASC\u003c/a\u003e \u003ca href\u003d\"https://help.veracode.com/reader/4EKhlLSMHm5jC8P8j3XccQ/IiF_rOE79ANbwnZwreSPGA\"\u003eSupported Cleansers\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "WEB-INF/views/blab.jsp",
+                "Line": "58",
+                "FunctionName": "_jspService",
+                "QualifiedFunctionName": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.blab_jsp._jspService",
+                "FunctionPrototype": "void _jspService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)",
+                "Scope": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.blab_jsp"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "2719266612",
+              "PrototypeHash": "4140704412",
+              "FlawHash": "3765405848",
+              "FlawHashCount": "4",
+              "FlawHashOrdinal": "2",
+              "CauseHash": "153293750",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "javax.servlet.jsp.JspWriter.print",
+            "IssueId": "1163",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "taint",
+            "IssueType": "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS)",
+            "CWEId": "80",
+            "DisplayText": "\u003cspan\u003eThis call to javax.servlet.jsp.JspWriter.print() contains a cross-site scripting (XSS) flaw.  The application populates the HTTP response with untrusted input, allowing an attacker to embed malicious content, such as Javascript code, which will be executed in the context of the victim\u0027s browser.  XSS vulnerabilities are commonly exploited to steal or manipulate cookies, modify presentation of content, and compromise confidential information, with new attack vectors being discovered on a regular basis. The first argument to print() contains tainted data from the variable comment.get(). The tainted data originated from an earlier call to java.sql.PreparedStatement.executeQuery. The tainted data is directed into an output stream returned by javax.servlet.jsp.JspWriter.\u003c/span\u003e \u003cspan\u003eUse contextual escaping on all untrusted data before using it to construct any portion of an HTTP response.  The escaping method should be chosen based on the specific use case of the untrusted data, otherwise it may not protect fully against the attack. For example, if the data is being written to the body of an HTML page, use HTML entity escaping; if the data is being written to an attribute, use attribute escaping; etc.  Both the OWASP Java Encoder library and the Microsoft AntiXSS library provide contextual escaping methods. For more details on contextual escaping, see https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md. In addition, as a best practice, always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/79.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://www.owasp.org/index.php/XSS\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://webappsec.pbworks.com/Cross-Site-Scripting\"\u003eWASC\u003c/a\u003e \u003ca href\u003d\"https://help.veracode.com/reader/4EKhlLSMHm5jC8P8j3XccQ/IiF_rOE79ANbwnZwreSPGA\"\u003eSupported Cleansers\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "WEB-INF/views/blab.jsp",
+                "Line": "102",
+                "FunctionName": "_jspService",
+                "QualifiedFunctionName": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.blab_jsp._jspService",
+                "FunctionPrototype": "void _jspService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)",
+                "Scope": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.blab_jsp"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "2719266612",
+              "PrototypeHash": "4140704412",
+              "FlawHash": "701922364",
+              "FlawHashCount": "3",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1589644387",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "javax.servlet.jsp.JspWriter.print",
+            "IssueId": "1167",
+            "GOB": "B",
+            "Severity": "3",
+            "IssueTypeId": "taint",
+            "IssueType": "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS)",
+            "CWEId": "80",
+            "DisplayText": "\u003cspan\u003eThis call to javax.servlet.jsp.JspWriter.print() contains a cross-site scripting (XSS) flaw.  The application populates the HTTP response with untrusted input, allowing an attacker to embed malicious content, such as Javascript code, which will be executed in the context of the victim\u0027s browser.  XSS vulnerabilities are commonly exploited to steal or manipulate cookies, modify presentation of content, and compromise confidential information, with new attack vectors being discovered on a regular basis. The first argument to print() contains tainted data from the variable commenterName.get(). The tainted data originated from an earlier call to java.sql.PreparedStatement.executeQuery. The tainted data is directed into an output stream returned by javax.servlet.jsp.JspWriter.\u003c/span\u003e \u003cspan\u003eUse contextual escaping on all untrusted data before using it to construct any portion of an HTTP response.  The escaping method should be chosen based on the specific use case of the untrusted data, otherwise it may not protect fully against the attack. For example, if the data is being written to the body of an HTML page, use HTML entity escaping; if the data is being written to an attribute, use attribute escaping; etc.  Both the OWASP Java Encoder library and the Microsoft AntiXSS library provide contextual escaping methods. For more details on contextual escaping, see https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md. In addition, as a best practice, always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/79.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://www.owasp.org/index.php/XSS\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://webappsec.pbworks.com/Cross-Site-Scripting\"\u003eWASC\u003c/a\u003e \u003ca href\u003d\"https://help.veracode.com/reader/4EKhlLSMHm5jC8P8j3XccQ/IiF_rOE79ANbwnZwreSPGA\"\u003eSupported Cleansers\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "WEB-INF/views/blab.jsp",
+                "Line": "103",
+                "FunctionName": "_jspService",
+                "QualifiedFunctionName": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.blab_jsp._jspService",
+                "FunctionPrototype": "void _jspService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)",
+                "Scope": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.blab_jsp"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "2719266612",
+              "PrototypeHash": "4140704412",
+              "FlawHash": "701922364",
+              "FlawHashCount": "3",
+              "FlawHashOrdinal": "2",
+              "CauseHash": "1589644387",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.sql.DriverManager.getConnection",
+            "IssueId": "1014",
+            "GOB": "B",
+            "Severity": "2",
+            "IssueTypeId": "reliability",
+            "IssueType": "J2EE Bad Practices: Direct Management of Connections",
+            "CWEId": "245",
+            "DisplayText": "\u003cspan\u003eThis call to getConnection() fails to use the J2EE container\u0027s resource management facilities as required by the J2EE standard.\u003c/span\u003e \u003cspan\u003eRequest the connection from the container rather than attempting to access it directly.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/245.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/Utils.java",
+                "Line": "225",
+                "FunctionName": "processReset",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.Utils.processReset",
+                "FunctionPrototype": "java.lang.String processReset(java.lang.String, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.Utils"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "962783076",
+              "PrototypeHash": "3980016362",
+              "FlawHash": "1934665430",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1046383670",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.sql.DriverManager.getConnection",
+            "IssueId": "1010",
+            "GOB": "B",
+            "Severity": "2",
+            "IssueTypeId": "reliability",
+            "IssueType": "J2EE Bad Practices: Direct Management of Connections",
+            "CWEId": "245",
+            "DisplayText": "\u003cspan\u003eThis call to getConnection() fails to use the J2EE container\u0027s resource management facilities as required by the J2EE standard.\u003c/span\u003e \u003cspan\u003eRequest the connection from the container rather than attempting to access it directly.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/245.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/UserController.java",
+                "Line": "88",
+                "FunctionName": "processLogin",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.UserController.processLogin",
+                "FunctionPrototype": "java.lang.String processLogin(java.lang.String, java.lang.String, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.UserController"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "190200079",
+              "PrototypeHash": "547887729",
+              "FlawHash": "1934665430",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1046383670",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.sql.DriverManager.getConnection",
+            "IssueId": "1012",
+            "GOB": "B",
+            "Severity": "2",
+            "IssueTypeId": "reliability",
+            "IssueType": "J2EE Bad Practices: Direct Management of Connections",
+            "CWEId": "245",
+            "DisplayText": "\u003cspan\u003eThis call to getConnection() fails to use the J2EE container\u0027s resource management facilities as required by the J2EE standard.\u003c/span\u003e \u003cspan\u003eRequest the connection from the container rather than attempting to access it directly.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/245.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/UserController.java",
+                "Line": "217",
+                "FunctionName": "processRegister",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.UserController.processRegister",
+                "FunctionPrototype": "java.lang.String processRegister(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.UserController"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "1790288480",
+              "PrototypeHash": "726326664",
+              "FlawHash": "1934665430",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1046383670",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.sql.DriverManager.getConnection",
+            "IssueId": "1013",
+            "GOB": "B",
+            "Severity": "2",
+            "IssueTypeId": "reliability",
+            "IssueType": "J2EE Bad Practices: Direct Management of Connections",
+            "CWEId": "245",
+            "DisplayText": "\u003cspan\u003eThis call to getConnection() fails to use the J2EE container\u0027s resource management facilities as required by the J2EE standard.\u003c/span\u003e \u003cspan\u003eRequest the connection from the container rather than attempting to access it directly.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/245.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/UserController.java",
+                "Line": "289",
+                "FunctionName": "showProfile",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.UserController.showProfile",
+                "FunctionPrototype": "java.lang.String showProfile(java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.UserController"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "476339127",
+              "PrototypeHash": "3111270672",
+              "FlawHash": "1934665430",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1046383670",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.sql.DriverManager.getConnection",
+            "IssueId": "1011",
+            "GOB": "B",
+            "Severity": "2",
+            "IssueTypeId": "reliability",
+            "IssueType": "J2EE Bad Practices: Direct Management of Connections",
+            "CWEId": "245",
+            "DisplayText": "\u003cspan\u003eThis call to getConnection() fails to use the J2EE container\u0027s resource management facilities as required by the J2EE standard.\u003c/span\u003e \u003cspan\u003eRequest the connection from the container rather than attempting to access it directly.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/245.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/UserController.java",
+                "Line": "359",
+                "FunctionName": "processProfile",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.UserController.processProfile",
+                "FunctionPrototype": "java.lang.String processProfile(java.lang.String, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.UserController"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "264377453",
+              "PrototypeHash": "351589305",
+              "FlawHash": "1934665430",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1046383670",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.sql.DriverManager.getConnection",
+            "IssueId": "1009",
+            "GOB": "B",
+            "Severity": "2",
+            "IssueTypeId": "reliability",
+            "IssueType": "J2EE Bad Practices: Direct Management of Connections",
+            "CWEId": "245",
+            "DisplayText": "\u003cspan\u003eThis call to getConnection() fails to use the J2EE container\u0027s resource management facilities as required by the J2EE standard.\u003c/span\u003e \u003cspan\u003eRequest the connection from the container rather than attempting to access it directly.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/245.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/BlabController.java",
+                "Line": "60",
+                "FunctionName": "showFeed",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.BlabController.showFeed",
+                "FunctionPrototype": "java.lang.String showFeed(java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.BlabController"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "4137105919",
+              "PrototypeHash": "3553623731",
+              "FlawHash": "1934665430",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1046383670",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.sql.DriverManager.getConnection",
+            "IssueId": "1006",
+            "GOB": "B",
+            "Severity": "2",
+            "IssueTypeId": "reliability",
+            "IssueType": "J2EE Bad Practices: Direct Management of Connections",
+            "CWEId": "245",
+            "DisplayText": "\u003cspan\u003eThis call to getConnection() fails to use the J2EE container\u0027s resource management facilities as required by the J2EE standard.\u003c/span\u003e \u003cspan\u003eRequest the connection from the container rather than attempting to access it directly.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/245.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/BlabController.java",
+                "Line": "166",
+                "FunctionName": "processFeed",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.BlabController.processFeed",
+                "FunctionPrototype": "java.lang.String processFeed(java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.BlabController"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "2842480779",
+              "PrototypeHash": "3686881935",
+              "FlawHash": "1934665430",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1046383670",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.sql.DriverManager.getConnection",
+            "IssueId": "1007",
+            "GOB": "B",
+            "Severity": "2",
+            "IssueTypeId": "reliability",
+            "IssueType": "J2EE Bad Practices: Direct Management of Connections",
+            "CWEId": "245",
+            "DisplayText": "\u003cspan\u003eThis call to getConnection() fails to use the J2EE container\u0027s resource management facilities as required by the J2EE standard.\u003c/span\u003e \u003cspan\u003eRequest the connection from the container rather than attempting to access it directly.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/245.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/BlabController.java",
+                "Line": "236",
+                "FunctionName": "showBlab",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.BlabController.showBlab",
+                "FunctionPrototype": "java.lang.String showBlab(java.lang.Integer, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.BlabController"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "3620146540",
+              "PrototypeHash": "3963437698",
+              "FlawHash": "1934665430",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1046383670",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.sql.DriverManager.getConnection",
+            "IssueId": "1004",
+            "GOB": "B",
+            "Severity": "2",
+            "IssueTypeId": "reliability",
+            "IssueType": "J2EE Bad Practices: Direct Management of Connections",
+            "CWEId": "245",
+            "DisplayText": "\u003cspan\u003eThis call to getConnection() fails to use the J2EE container\u0027s resource management facilities as required by the J2EE standard.\u003c/span\u003e \u003cspan\u003eRequest the connection from the container rather than attempting to access it directly.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/245.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/BlabController.java",
+                "Line": "320",
+                "FunctionName": "processBlab",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.BlabController.processBlab",
+                "FunctionPrototype": "java.lang.String processBlab(java.lang.String, java.lang.Integer, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.BlabController"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "2776202144",
+              "PrototypeHash": "3977409028",
+              "FlawHash": "1934665430",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1046383670",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.sql.DriverManager.getConnection",
+            "IssueId": "1008",
+            "GOB": "B",
+            "Severity": "2",
+            "IssueTypeId": "reliability",
+            "IssueType": "J2EE Bad Practices: Direct Management of Connections",
+            "CWEId": "245",
+            "DisplayText": "\u003cspan\u003eThis call to getConnection() fails to use the J2EE container\u0027s resource management facilities as required by the J2EE standard.\u003c/span\u003e \u003cspan\u003eRequest the connection from the container rather than attempting to access it directly.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/245.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/BlabController.java",
+                "Line": "411",
+                "FunctionName": "showBlabbers",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.BlabController.showBlabbers",
+                "FunctionPrototype": "java.lang.String showBlabbers(java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.BlabController"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "295879128",
+              "PrototypeHash": "3258070012",
+              "FlawHash": "1934665430",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1046383670",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.sql.DriverManager.getConnection",
+            "IssueId": "1005",
+            "GOB": "B",
+            "Severity": "2",
+            "IssueTypeId": "reliability",
+            "IssueType": "J2EE Bad Practices: Direct Management of Connections",
+            "CWEId": "245",
+            "DisplayText": "\u003cspan\u003eThis call to getConnection() fails to use the J2EE container\u0027s resource management facilities as required by the J2EE standard.\u003c/span\u003e \u003cspan\u003eRequest the connection from the container rather than attempting to access it directly.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/245.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/BlabController.java",
+                "Line": "492",
+                "FunctionName": "processBlabbers",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.BlabController.processBlabbers",
+                "FunctionPrototype": "java.lang.String processBlabbers(java.lang.Integer, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.BlabController"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "1211882871",
+              "PrototypeHash": "1036108318",
+              "FlawHash": "1934665430",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1046383670",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "javax.servlet.jsp.JspWriter.print",
+            "IssueId": "1152",
+            "GOB": "B",
+            "Severity": "2",
+            "IssueTypeId": "taint",
+            "IssueType": "Information Exposure Through an Error Message",
+            "CWEId": "209",
+            "DisplayText": "\u003cspan\u003e The application calls the javax.servlet.jsp.JspWriter.print() function, which may expose information about the application logic or other details such as the names and versions of the application container and associated components.  This information can be useful in executing other attacks and can also enable the attacker to target known vulnerabilities in application components. The first argument to print() contains data from an error message (possibly containing untrusted data) from the variable error. The data from an error message (possibly containing untrusted data) originated from an earlier call to java.lang.Throwable.getMessage. The data from an error message (possibly containing untrusted data) is directed into an output stream returned by javax.servlet.jsp.JspWriter.\u003c/span\u003e \u003cspan\u003eEnsure that error codes or other messages returned to end users are not overly verbose.  Sanitize all messages of any sensitive information that is not absolutely necessary.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/209.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "WEB-INF/views/register.jsp",
+                "Line": "57",
+                "FunctionName": "_jspService",
+                "QualifiedFunctionName": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.register_jsp._jspService",
+                "FunctionPrototype": "void _jspService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)",
+                "Scope": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.register_jsp"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "3620050288",
+              "PrototypeHash": "3380983035",
+              "FlawHash": "3765405848",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "153293750",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "javax.servlet.jsp.JspWriter.print",
+            "IssueId": "1151",
+            "GOB": "B",
+            "Severity": "2",
+            "IssueTypeId": "taint",
+            "IssueType": "Information Exposure Through an Error Message",
+            "CWEId": "209",
+            "DisplayText": "\u003cspan\u003e The application calls the javax.servlet.jsp.JspWriter.print() function, which may expose information about the application logic or other details such as the names and versions of the application container and associated components.  This information can be useful in executing other attacks and can also enable the attacker to target known vulnerabilities in application components. The first argument to print() contains data from an error message (possibly containing untrusted data) from the variable error. The data from an error message (possibly containing untrusted data) originated from an earlier call to java.lang.Throwable.getMessage. The data from an error message (possibly containing untrusted data) is directed into an output stream returned by javax.servlet.jsp.JspWriter.\u003c/span\u003e \u003cspan\u003eEnsure that error codes or other messages returned to end users are not overly verbose.  Sanitize all messages of any sensitive information that is not absolutely necessary.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/209.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "WEB-INF/views/profile.jsp",
+                "Line": "60",
+                "FunctionName": "_jspService",
+                "QualifiedFunctionName": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.profile_jsp._jspService",
+                "FunctionPrototype": "void _jspService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)",
+                "Scope": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.profile_jsp"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "692106038",
+              "PrototypeHash": "1360154352",
+              "FlawHash": "3765405848",
+              "FlawHashCount": "3",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "153293750",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "javax.servlet.jsp.JspWriter.print",
+            "IssueId": "1156",
+            "GOB": "B",
+            "Severity": "2",
+            "IssueTypeId": "taint",
+            "IssueType": "Information Exposure Through an Error Message",
+            "CWEId": "209",
+            "DisplayText": "\u003cspan\u003e The application calls the javax.servlet.jsp.JspWriter.print() function, which may expose information about the application logic or other details such as the names and versions of the application container and associated components.  This information can be useful in executing other attacks and can also enable the attacker to target known vulnerabilities in application components. The first argument to print() contains data from an error message (possibly containing untrusted data) from the variable error. The data from an error message (possibly containing untrusted data) originated from an earlier call to java.lang.Throwable.getMessage. The data from an error message (possibly containing untrusted data) is directed into an output stream returned by javax.servlet.jsp.JspWriter.\u003c/span\u003e \u003cspan\u003eEnsure that error codes or other messages returned to end users are not overly verbose.  Sanitize all messages of any sensitive information that is not absolutely necessary.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/209.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "WEB-INF/views/login.jsp",
+                "Line": "57",
+                "FunctionName": "_jspService",
+                "QualifiedFunctionName": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.login_jsp._jspService",
+                "FunctionPrototype": "void _jspService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)",
+                "Scope": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.login_jsp"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "2303903034",
+              "PrototypeHash": "3087822160",
+              "FlawHash": "3765405848",
+              "FlawHashCount": "2",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "153293750",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "javax.servlet.jsp.JspWriter.print",
+            "IssueId": "1168",
+            "GOB": "B",
+            "Severity": "2",
+            "IssueTypeId": "taint",
+            "IssueType": "Information Exposure Through an Error Message",
+            "CWEId": "209",
+            "DisplayText": "\u003cspan\u003e The application calls the javax.servlet.jsp.JspWriter.print() function, which may expose information about the application logic or other details such as the names and versions of the application container and associated components.  This information can be useful in executing other attacks and can also enable the attacker to target known vulnerabilities in application components. The first argument to print() contains data from an error message (possibly containing untrusted data) from the variable error. The data from an error message (possibly containing untrusted data) originated from an earlier call to java.lang.Throwable.getMessage. The data from an error message (possibly containing untrusted data) is directed into an output stream returned by javax.servlet.jsp.JspWriter.\u003c/span\u003e \u003cspan\u003eEnsure that error codes or other messages returned to end users are not overly verbose.  Sanitize all messages of any sensitive information that is not absolutely necessary.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/209.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "WEB-INF/views/feed.jsp",
+                "Line": "63",
+                "FunctionName": "_jspService",
+                "QualifiedFunctionName": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.feed_jsp._jspService",
+                "FunctionPrototype": "void _jspService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)",
+                "Scope": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.feed_jsp"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "2420471427",
+              "PrototypeHash": "4175656100",
+              "FlawHash": "3765405848",
+              "FlawHashCount": "2",
+              "FlawHashOrdinal": "2",
+              "CauseHash": "153293750",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "javax.servlet.jsp.JspWriter.print",
+            "IssueId": "1164",
+            "GOB": "B",
+            "Severity": "2",
+            "IssueTypeId": "taint",
+            "IssueType": "Information Exposure Through an Error Message",
+            "CWEId": "209",
+            "DisplayText": "\u003cspan\u003e The application calls the javax.servlet.jsp.JspWriter.print() function, which may expose information about the application logic or other details such as the names and versions of the application container and associated components.  This information can be useful in executing other attacks and can also enable the attacker to target known vulnerabilities in application components. The first argument to print() contains data from an error message (possibly containing untrusted data) from the variable error. The data from an error message (possibly containing untrusted data) originated from an earlier call to java.lang.Throwable.getMessage. The data from an error message (possibly containing untrusted data) is directed into an output stream returned by javax.servlet.jsp.JspWriter.\u003c/span\u003e \u003cspan\u003eEnsure that error codes or other messages returned to end users are not overly verbose.  Sanitize all messages of any sensitive information that is not absolutely necessary.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/209.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "WEB-INF/views/blabbers.jsp",
+                "Line": "63",
+                "FunctionName": "_jspService",
+                "QualifiedFunctionName": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.blabbers_jsp._jspService",
+                "FunctionPrototype": "void _jspService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)",
+                "Scope": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.blabbers_jsp"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "3620571190",
+              "PrototypeHash": "2623319697",
+              "FlawHash": "3765405848",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "153293750",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "javax.servlet.jsp.JspWriter.print",
+            "IssueId": "1161",
+            "GOB": "B",
+            "Severity": "2",
+            "IssueTypeId": "taint",
+            "IssueType": "Information Exposure Through an Error Message",
+            "CWEId": "209",
+            "DisplayText": "\u003cspan\u003e The application calls the javax.servlet.jsp.JspWriter.print() function, which may expose information about the application logic or other details such as the names and versions of the application container and associated components.  This information can be useful in executing other attacks and can also enable the attacker to target known vulnerabilities in application components. The first argument to print() contains data from an error message (possibly containing untrusted data) from the variable error. The data from an error message (possibly containing untrusted data) originated from an earlier call to java.lang.Throwable.getMessage. The data from an error message (possibly containing untrusted data) is directed into an output stream returned by javax.servlet.jsp.JspWriter.\u003c/span\u003e \u003cspan\u003eEnsure that error codes or other messages returned to end users are not overly verbose.  Sanitize all messages of any sensitive information that is not absolutely necessary.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/209.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "WEB-INF/views/blab.jsp",
+                "Line": "66",
+                "FunctionName": "_jspService",
+                "QualifiedFunctionName": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.blab_jsp._jspService",
+                "FunctionPrototype": "void _jspService(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)",
+                "Scope": "com.veracode.compiledjsp.xverademowar.WEB_002dINF.views.blab_jsp"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "2719266612",
+              "PrototypeHash": "4140704412",
+              "FlawHash": "3765405848",
+              "FlawHashCount": "4",
+              "FlawHashOrdinal": "3",
+              "CauseHash": "153293750",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          },
+          {
+            "Title": "java.sql.Statement.executeQuery",
+            "IssueId": "1003",
+            "GOB": "B",
+            "Severity": "0",
+            "IssueTypeId": "reliability",
+            "IssueType": "Improper Resource Shutdown or Release",
+            "CWEId": "404",
+            "DisplayText": "\u003cspan\u003eThe program fails to release or incorrectly releases the variable result, which was previously allocated by a call to java.sql.Statement.executeQuery().\u003c/span\u003e \u003cspan\u003eEnsure that all code paths properly release this resource.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/404.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+            "Files": {
+              "SourceFile": {
+                "File": "com/veracode/verademo/controller/UserController.java",
+                "Line": "99",
+                "FunctionName": "processLogin",
+                "QualifiedFunctionName": "com.veracode.verademo.controller.UserController.processLogin",
+                "FunctionPrototype": "java.lang.String processLogin(java.lang.String, java.lang.String, java.lang.String, org.springframework.ui.Model)",
+                "Scope": "com.veracode.verademo.controller.UserController"
+              }
+            },
+            "FlawMatch": {
+              "ProcedureHash": "190200079",
+              "PrototypeHash": "547887729",
+              "FlawHash": "3392777041",
+              "FlawHashCount": "1",
+              "FlawHashOrdinal": "1",
+              "CauseHash": "1176028798",
+              "CauseHashCount": "1",
+              "CauseHashOrdinal": "1"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "pipeline_scan": "20.5.6-0"
+}
