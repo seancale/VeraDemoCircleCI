@@ -1,16 +1,9 @@
-# This workflow will build a Java project with Maven
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+name: Verademo Static
 
-name: Java CI with Maven
-
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push]
 
 jobs:
-  build:
+  build-sast:
 
     runs-on: ubuntu-latest
 
@@ -20,5 +13,15 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+  
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn clean verify
+     
+    - name: Download the Pipeline Scanner
+      uses: wei/curl@master
+      with:
+        args: -O https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip
+    - name: Unzip the Pipeline Scanner2
+      run: unzip pipeline-scan-LATEST.zip /y
+    - name: Run Pipeline Scanner
+      run: java -jar pipeline-scan.jar --veracode_api_id "${{secrets.VERACODE_API_ID}}" --veracode_api_key "${{secrets.VERACODE_API_KEY}}" --file "/home/runner/work/JavaVeraDemo/JavaVeraDemo/target/verademo.war" --fail_on_severity="Very High, High"
