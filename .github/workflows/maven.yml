@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-
+git
     runs-on: ubuntu-latest
 
     steps:
@@ -22,3 +22,5 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Veracode Upload And Scan
+      uses: veracode/veracode-uploadandscan-action@0.2.1
