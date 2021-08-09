@@ -1,6 +1,9 @@
 name: Verademo Static Policy
 
-on: [push]
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [test]
 
 jobs:
   build-sast:
