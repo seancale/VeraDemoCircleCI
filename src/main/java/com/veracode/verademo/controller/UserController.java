@@ -72,12 +72,9 @@ public class UserController {
 		logger.info("Entering processLogin");
 		
 		Connection connect = null;
-        /* START BAD CODE */ 
-		Statement sqlStatement = null;
-        /* END BAD CODE */
-        /* START GOOD CODE 
+
 		PreparedStatement sqlStatement = null;
-        /* END GOOD CODE  */
+
  
 		int yy = 0;
 		
@@ -89,16 +86,6 @@ public class UserController {
 			connect.setAutoCommit(true);
 
 			
-			
-			/* START BAD CODE */
-			// Execute the query
-			logger.info("Creating the Statgrement");
-			String sqlQuery = "select * from users where username='" + username + "' and password='" + password + "';";
-			sqlStatement = connect.createStatement();
-			logger.info("Execute the Statement: " + sqlQuery);
-			ResultSet result = sqlStatement.executeQuery(sqlQuery);
-			/* END BAD CODE */
-			/* START GOOD CODE 
 			String sqlQuery = "select * from users where username=? and password=?;";
 			logger.info("Preparing the PreparedStatement");
 			sqlStatement = connect.prepareStatement(sqlQuery);
@@ -107,7 +94,7 @@ public class UserController {
 			sqlStatement.setString(2, password);
 			logger.info("Executing the PreparedStatement");
 			ResultSet result = sqlStatement.executeQuery();
-			/* END GOOD CODE */
+
 			
 			// Did we find exactly 1 user that matched?
 			if (result.first()) {
