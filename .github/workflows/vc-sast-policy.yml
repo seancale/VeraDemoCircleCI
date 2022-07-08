@@ -6,7 +6,7 @@ on:
     types: [test]
 
 jobs:
-  build-sast:
+  checkout-package-scan:
 
     runs-on: ubuntu-latest
 
