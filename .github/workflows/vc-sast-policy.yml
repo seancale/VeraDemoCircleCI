@@ -1,4 +1,4 @@
-name: Verademo Static Policy
+name: Verademo Scanning Example Github
 
 on:
   workflow_dispatch:
