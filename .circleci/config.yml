@@ -68,6 +68,6 @@ workflows:
   btd:
     jobs:
       - build
-      - downstream:
+      - pipeline-scan:
           requires:
-            - pipeline-scan
+            - build
